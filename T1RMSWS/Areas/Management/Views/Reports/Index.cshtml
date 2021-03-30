@@ -1,0 +1,36 @@
+﻿@model IEnumerable<T1RMSWS.Data.Reservation>
+@section Styles{
+	<link href="~/Flot graphs/css/examples.css" rel="stylesheet" />
+}
+@{
+	ViewData["Title"] = "Reports";
+}
+
+<h1>Reports</h1>
+<br />
+
+<div id="content">
+	<p>All reservations in the past year</p>
+	<div class="demo-container">
+		<div id="placeholder" class="demo-placeholder"></div>
+	</div>
+	<p>Total: @Model.Count()</p>
+</div>
+
+<div id="chart_statuses"></div>
+<div id="chart_types"></div>
+
+
+@section Scripts{
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="~/Flot graphs/js/jquery.js"></script>
+	<script src="~/Flot graphs/js/jquery.canvaswrapper.js"></script>
+	<script src="~/Flot graphs/js/jquery.colorhelpers.js"></script>
+	<script src="~/Flot graphs/js/jquery.flot.js"></script>
+	<script src="~/Flot graphs/js/jquery.flot.saturated.js"></script>
+	<script src="~/Flot graphs/js/jquery.flot.browser.js"></script>
+	<script src="~/Flot graphs/js/jquery.flot.drawSeries.js"></script>
+	<script src="~/Flot graphs/js/jquery.flot.uiConstants.js"></script>
+	<script src="~/Flot graphs/js/jquery.flot.categories.js"></script>
+	<script src="~/js/management.reports.index.js"></script>
+}

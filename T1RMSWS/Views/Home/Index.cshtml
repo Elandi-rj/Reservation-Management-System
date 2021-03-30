@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+
+@if (User.IsInRole("Manager"))
+{
+    <h2>Is Manager</h2>
+}
+else if (User.IsInRole("Member"))
+{
+    <h2>Is Member</h2>
+}
+else if (User.IsInRole("Staff"))
+{
+    <h2>Is Staff</h2>
+}

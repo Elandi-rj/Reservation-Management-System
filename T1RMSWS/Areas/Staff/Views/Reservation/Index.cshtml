@@ -1,0 +1,67 @@
+﻿@model T1RMSWS.Areas.Staff.Models.Reservation.Index
+
+@{
+    ViewData["Title"] = "Index";
+}
+@section styles{
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+}
+
+<h1>Reservations</h1>
+
+<table class="table table-striped table-bordered" id="example">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Sitting</th>
+            <th scope="col">Guests</th>
+            <th scope="col">Start (date/time)</th>
+            <th scope="col">Duration (hours)</th>
+            <th scope="col">Notes</th>
+            <th scope="col">Type</th>
+            <th scope="col">Status</th>
+            <th scope="col">assign table</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @{ var n = 0; }
+        @foreach (var item in Model.Reservations)
+        {
+            n++;
+        <tr id="@item.Id">
+            <th scope="row">@n</th>
+            <td hidden id="sid">@item.SittingId</td>
+            <td hidden id="cid">@item.CustomerId</td>
+            <td>@item.Customer.FirstName</td>
+            <td>@item.Customer.LastName</td>
+            <td>@item.Sitting.SittingType.Description</td>
+            <td id="g">@item.Guests</td>
+            <td id="st">@item.StartTime</td>
+            <td id="duration">@(item.Duration.Subtract(item.StartTime).TotalHours)</td>
+            <td hidden id="d">@item.Duration</td>
+            <td id="n">@item.Note</td>
+            <td id="selectType">
+                <select asp-for="@item.ReservationTypeId" asp-items="@((List<SelectListItem>)Model.ReservationTypes)"></select>
+            </td>
+            <td id="selectStatus">
+                <select asp-for="@item.ReservationStatusId" asp-items="@((List<SelectListItem>)Model.ReservationStatuses)"></select>
+            </td>
+            <td>
+                <input type="button" value="assign table" onclick="location.href='@Url.Action("tables","reservation", new { id = item.Id})'" />
+            </td>
+            <td hidden id="rid" value="@item.Id">@item.Id</td>
+
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script src="~/js/bstable.js"></script>
+    <script src="~/js/staff.reservation.index.js"></script>
+}

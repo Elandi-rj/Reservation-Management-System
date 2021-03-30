@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Reservation";
+}
+@*<h1>@ViewData["Title"]</h1>*@
+
+
+@section styles{
+    <link href="~/ResponsiveEventCalendar/css/monthly.css" rel="stylesheet" />
+}
+
+@*<a class="btn btn-outline-primary" asp-area="" asp-controller="Reservation" asp-action="Form">go to form</a>*@
+
+<label>Total number of guests (including yourself)</label>
+<br />
+<input type="number" id="txtGuest" name="appt" step="1" min="1" max="40" />
+<button id="btnGuests">submit</button>
+<div class="monthly" id="mycalendar"></div>
+
+
+@section Scripts{
+    <script src="~/ResponsiveEventCalendar/js/monthly.js"></script>
+    <script src="~/js/home.index.js"></script>
+}

@@ -1,0 +1,63 @@
+﻿@model List<T1RMSWS.Data.Reservation>
+
+@{
+    ViewData["Title"] = "My Reservations";
+
+    var tableClass = "";
+    var duration = new TimeSpan();
+}
+
+<h1>My Reservations</h1>
+
+<p>
+    <a href="~/reservation">create new</a>
+</p>
+
+<table class="table">
+    
+    <thead class="thead-light">
+        <tr>
+            <th>StartTime</th>
+            <th>Duration (Hours)</th>
+            <th>Guests</th>
+            <th>Note</th>
+            <th>Reservation Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.StartTime < DateTime.Now)
+            {
+                tableClass = "table-dark";
+            }
+            else
+            {
+                tableClass = "table-primary";
+            }
+            if (item.StartTime.Day == DateTime.Now.Day)
+            {
+                tableClass = "table-light";
+            }
+            <tr class="@tableClass">
+                <td>
+                    @item.StartTime
+                </td>
+                <td>
+                    @{ duration = item.Duration.Subtract(item.StartTime);
+                    }
+                    @duration.TotalHours
+                </td>
+                <td>
+                    @item.Guests
+                </td>
+                <td>
+                    @item.Note
+                </td>
+                <td>
+                    @item.getDescription(item.ReservationStatusId)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

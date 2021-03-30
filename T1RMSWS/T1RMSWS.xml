@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>T1RMSWS</name>
+    </assembly>
+    <members>
+        <member name="M:T1RMSWS.Areas.Management.Controllers.ReportsController.GetReservations">
+            <summary>  
+            get a list of all reservations made within a month
+            </summary>  
+            <returns>object with number of reservations and the string name of that month</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Areas.Management.Controllers.ReportsController.GetReservationsStatus">
+            <summary>  
+            gets the number all reservations in each status i.e pending, confirmed etc
+            </summary>  
+            <returns>returns data object with a string of the status and the number of reservations in that status</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Areas.Management.Controllers.ReportsController.GetReservationsTypes">
+            <summary>  
+            gets the number all reservations in each type i.e online, mobile etc
+            </summary>  
+            <returns>returns data object with a string of the type and the number of reservations in that type</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Areas.Member.Controllers.MemberAreaController.GetIdentityUserAsync">
+            <summary>  
+            gets the identity user of the person on the page
+            </summary>  
+            <returns>returns identity user </returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Areas.Member.Controllers.MemberAreaController.GetMemberAsync">
+            <summary>  
+            gets the Person object of the user on the page
+            </summary>  
+            <returns>returns Person object of the user on the page</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Areas.Member.Controllers.MemberAreaController.GetMemberReservationsAsync">
+            <summary>  
+            gets all reservations made by the member
+            </summary>  
+            <returns>returns list of reservations made by member </returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Areas.Staff.Controllers.ReservationController.TablesCreate(System.Int32,System.Int32)">
+            <summary>  
+            Creates a table in the database and redirects to table action
+            </summary>  
+            <param name="tableId">integer Id of the table</param>  
+            <param name="reservationId">integer Id of the reservation</param>  
+            <returns>returns redirect to action</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Areas.Staff.Controllers.ReservationController.TablesDelete(System.Int32)">
+            <summary>  
+            Deletes a table from the database and redirects to table action
+            </summary>  
+            <param name="id">integer Id of the reservation</param>  
+            <returns>returns redirect to action</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Controllers.ApiReservationController.GetStartSlots(System.Int32,System.Int32)">
+            <summary>  
+            get the unavailable starting times from the database
+            </summary>  
+            <param name="sittingId">integer Id of the sitting</param>  
+            <param name="guests">integer number of guests</param>  
+            <returns>list of strings representing the unavailable time slots</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Controllers.ApiReservationController.GetDuration(System.Int32,System.Int32,System.DateTime)">
+            <summary>  
+            get the unavailable duration times from the database
+            </summary>  
+            <param name="sittingId">integer Id of the sitting</param>  
+            <param name="guests">integer number of guests</param>  
+            <param name="startTime">DateTime starting time of the reservation reqeust</param>  
+            <returns>list of strings representing the unavailable time slots</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Controllers.ApiReservationController.Submit(T1RMSWS.Data.Reservation)">
+            <summary>  
+            Responsible for processing reservation requests
+            </summary>  
+            <param name="r">Reservation object</param>  
+            <returns>returns an object with a boolean value for if the reservation was accepted, and the a description of the error if it wasn't </returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Controllers.ApiReservationController.ReservationByEmail(System.String)">
+            <summary>  
+            Get all reservation requests made by a member
+            </summary>  
+            <param name="email">string email</param>  
+            <returns>list of objects with all details of a reservation made by the member</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Controllers.SittingsController.GetList(System.Int32)">
+            <summary>  
+            generates object with list of reservations that are available and are able to fit the number of guests
+            </summary>  
+            <param name="guests">integer number of guests</param>  
+            <returns>object with list of reservations that are available and are able to fit the number of guests</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Data.Reservation.GetAllReservedTables(T1RMSWS.Data.ApplicationDbContext)">
+            <summary>  
+            goes through each reservation in the same sitting as the chosen reservation, which has assigned table(s) and is overlapping with the chosen reservation
+            </summary>  
+            <param name="_db">database context</param>  
+            <returns>list of ReservationTable objects that are assigned to this object</returns>  
+            
+        </member>
+        <member name="M:T1RMSWS.Data.Sitting.GetSlots">
+            <summary>  
+            Gets a int array of the number of guests in every 30 minute segment
+            </summary>  
+            <returns>return an int array of the number of guests in every 30 minute segment</returns>  
+            
+        </member>
+    </members>
+</doc>

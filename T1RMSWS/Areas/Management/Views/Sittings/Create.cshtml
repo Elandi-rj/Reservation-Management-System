@@ -1,0 +1,65 @@
+﻿@model T1RMSWS.Data.Sitting
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Sitting</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RestaurantId" class="control-label">Restaurant Id</label>
+                <select asp-for="RestaurantId" class ="form-control" asp-items="ViewBag.RestaurantId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Start" class="control-label"></label>
+                <input asp-for="Start" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-ddThh:mm")" />
+                <span asp-validation-for="Start" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="End" class="control-label"></label>
+                <input asp-for="End" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-ddThh:mm")" />
+                <span asp-validation-for="End" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Capacity" class="control-label"></label>
+                <input asp-for="Capacity" class="form-control" value="40" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" checked asp-for="Open" /> @Html.DisplayNameFor(model => model.Open)
+                </label>
+            </div>
+            <div class="form-group">
+                <label>Add new sitting type (optional)</label>
+                <input class="form-control" id="txtSittingType" />
+            </div>
+            <div class="form-group">
+                <btn class="btn btn-primary" id="btnAddSitting">add sitting type</btn>
+                <a class="btn btn-primary" href="~/Management/SittingTypes">manage sitting type</a>
+            </div>
+            <div class="form-group">
+                <label asp-for="SittingTypeId" class="control-label">Sitting Type</label>
+                <select asp-for="SittingTypeId" class ="form-control" asp-items="ViewBag.SittingTypeId" id="txtSittingType"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/js/management.add.js"></script>
+}

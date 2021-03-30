@@ -1,0 +1,67 @@
+﻿@model T1RMSWS.Data.Reservation
+
+@{
+    ViewData["Title"] = "Tables";
+}
+<h4>Reservation Table</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="TablesCreate" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Reservation Id</label>
+                <p class="form-control">@Model.Id</p>
+                <input type="hidden" name="ReservationId" value="@Model.Id" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Table</label>
+                <select id="selectTables" name="TableId" class="form-control" asp-items="ViewBag.TableId"></select>
+            </div>
+            <div class="form-group">
+                <input id="addSubmit" type="submit" value="Add Table" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    <div class="col-md">
+        <label>Tables assigned to reservation</label>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Table</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Id</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ foreach (var item in Model.AssignedTables)
+                    {
+                        <tr>
+                            <td>@item.Table.Description</td>
+                            <td>@item.Table.Area.Description</td>
+                            <td id="TableReservationId">@item.Id</td>
+                            <td>
+                                <form action="/Staff/Reservation/TablesDelete" method="post">
+                                    <input type="hidden" name="id" value="@item.Id"  id="id"/>
+                                    <input type="submit" class="btn btn-primary" value="Remove"  />
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Staff.Tables.js"></script>
+}

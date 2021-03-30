@@ -1,0 +1,53 @@
+﻿@model  IEnumerable<T1RMSWS.Data.Reservation>
+
+@section styles{
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+}
+
+<h1>Management - Home - Index</h1>
+<button id="new-row-button" class="btn btn-dark">
+    New Row
+</button>
+<table class="table table-striped table-bordered" id="example">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Customer.FirstName)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Customer.LastName)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Sitting.SittingType)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Guests)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.Duration)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.ReservationType.Description)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.ReservationStatus.Description)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.StartTime)</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+    <tr id="@item.Id">
+        <th scope="row">##</th>
+        <td id="si">@item.SittingId</td>
+        <td>@item.CustomerId</td>
+        <td>@item.ReservationTypeId</td>
+        <td>@item.Guests</td>
+        <td>@item.Duration</td>
+        <td>@item.Note</td>
+        <td>@item.ReservationStatusId</td>
+        <td>@item.StartTime</td>
+
+    </tr>
+
+        }
+    </tbody>
+</table>
+
+@section scripts{
+    <script src="~/js/bstable.js"></script>
+
+    <script src="~/js/management.home.index.js"></script>
+
+}
